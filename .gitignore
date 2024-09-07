@@ -1,0 +1,16 @@
+/backend/lib/python3.8/
+/backend/lib/python3.8/site-packages/
+/backend/bin/
+backend/pyvenv.cfg
+backend/Billingapp/db.sqlite3
+/backend/.DS_Store
+
+/backend/*.pyc
+/backend/__pycache__/
+
+
+frontend/node_modules/
+
+
+*.log
+/tmp/
