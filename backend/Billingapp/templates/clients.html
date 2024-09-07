@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+<html>
+    <meta charset="UTF-8" />
+{% block content %}
+    <title>Clients Page</title>
+    <style>
+      /* Tab styles */
+      .tab {
+        display: none;
+      }
+      .tab.active {
+        display: block;
+      }
+      /* Form styles */
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      /* Table styles */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      /* Icon styles */
+      .icon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+      }
+      .edit-icon {
+        background-image: url("edit-icon.png");
+      }
+      .delete-icon {
+        background-image: url("delete-icon.png");
+      }
+    </style>
+    <div class="tab-container">
+      <button class="tab-button active" onclick="openTab(event, 'new-tab')">
+        New
+      </button>
+      <button class="tab-button" onclick="openTab(event, 'existing-tab')">
+        Existing
+      </button>
+    </div>
+    <div id="new-tab" class="tab active">
+      <h2>Add New Client</h2>
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter name..." />
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Enter email..."
+        />
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          placeholder="Enter phone..."
+        />
+        <input type="submit" value="Add Client" />
+      </form>
+    </div>
+    <div id="existing-tab" class="tab">
+      <h2>Existing Clients</h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>John Doe</td>
+          <td>john@example.com</td>
+          <td>123-456-789</td>
+          <td>
+            <span class="icon edit-icon"></span>
+            <span class="icon delete-icon"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>jane@example.com</td>
+          <td>987-654-3210</td>
+          <td>
+            <span class="icon edit-icon"></span>
+            <span class="icon delete-icon"></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      // Open the default tab
+      document.getElementById("new-tab").style.display = "block";
+      function openTab(evt, tabName) {
+        // Get all tab content and hide them
+        var tabs = document.getElementsByClassName("tab");
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].style.display = "none";
+        }
+        // Get all tab buttons and remove the active class
+        var buttons = document.getElementsByClassName("tab-button");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].className = buttons[i].className.replace(" active", "");
+        }
+        // Show the clicked tab content and mark the button as active
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+  {% endblock %}
+  </body>
+</html>

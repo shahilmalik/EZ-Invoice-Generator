@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+<body>
+  {% block content %}
+  <style>
+    #existing-tab {
+      display: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Style the tab */
+    .tab {
+      float: left;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      width: 15%;
+      height: 100%;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+      display: block;
+      background-color: inherit;
+      color: black;
+      padding: 22px 16px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current "tab button" class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    /* Table styles */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    /* Icon styles */
+    .tabcontent {
+      float: left;
+      padding: 0px 12px;
+      border: 1px solid #ccc;
+      width: 85%;
+      border-left: none;
+      height: 100%;
+    }
+    .icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      cursor: pointer;
+    }
+    .edit-icon {
+      background-image: url("edit-icon.png");
+    }
+    .delete-icon {
+      background-image: url("delete-icon.png");
+    }
+    .a1 {
+      display: inline-block;
+    }
+  </style>
+  <div class="tab">
+    <button class="tablinks active" onclick="openCity(event, 'new-tab')">
+      New
+    </button>
+    <button class="tablinks" onclick="openCity(event, 'existing-tab')">
+      Existing
+    </button>
+  </div>
+  <div id="new-tab" class="tabcontent">
+    <h2>Add New Product/Service</h2>
+    <form method="POST" action="{% url 'services' %}">
+      {% csrf_token %}
+      <label>Name/Description</label>
+      {{form.name}}
+      <label>Price</label>
+      {{form.price}}
+
+      <input type="submit" value="Add Item" />
+    </form>
+  </div>
+  <div id="existing-tab" class="tabcontent">
+    <h2>Existing Products/Services</h2>
+    <table>
+      <tr>
+        <th>Name/Description</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+      {% for service in services %}
+      <tr>
+        <td>{{service.name}}</td>
+        <td>₹{{service.price}}</td>
+        <td>
+          <span class="icon edit-icon"></span>
+          <span class="icon delete-icon"></span>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <script>
+    function openCity(evt, cityName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the link that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+  {% endblock %}
+</body>

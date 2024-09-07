@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      /* Shared styles for all pages */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+main {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #555;
+}
+
+p {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Login page styles */
+.login-logo {
+  display: block;
+  margin: 20px auto;
+  max-width: 100px;
+}
+
+/* Sign up page styles */
+.signup-logo {
+  display: block;
+  margin: 20px auto;
+  max-width: 150px;
+}
+
+/* Forgot password page styles */
+.forgot-password-logo {
+  display: block;
+  margin: 20px auto;
+  max-width: 200px;
+}
+
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Your Billing System</title>
+    <link rel="stylesheet" href="login.css" />
+    <script src="login.js"></script>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation menu -->
+    </header>
+    <main>
+      <h1>Login</h1>
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+
+        <input type="submit" value="Login" />
+      </form>
+      {% for message in messages %}
+      <p>{{message}}</p>
+      {% endfor %}
+      <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+      <p><a href="{% url 'forgotps' %}">Forgot your password?</a></p>
+    </main>
+    <footer>
+      <!-- Footer content -->
+    </footer>
+  </body>
+</html>

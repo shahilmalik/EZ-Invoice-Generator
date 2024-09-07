@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      /* Basic styles for the billing system home page */
+
+      /* Typography */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 48px;
+        font-weight: bold;
+      }
+
+      h2 {
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      h3 {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+      }
+
+      /* Layout */
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav li {
+        display: inline-block;
+      }
+
+      nav a {
+        color: #fff;
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        background-color: #555;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .cta {
+        background-color: #1abc9c;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        display: inline-block;
+        font-size: 18px;
+        margin-top: 1.5rem;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .cta:hover {
+        background-color: #148f77;
+      }
+
+      .packages {
+        margin-top: 3rem;
+      }
+
+      .packages ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .packages li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+
+      .packages h3 {
+        margin-top: 0;
+      }
+
+      .packages a {
+        color: #1abc9c;
+        text-decoration: none;
+      }
+
+      .packages a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      /* Responsive styles */
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 36px;
+        }
+
+        nav li {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        nav a {
+          display: inline-block;
+          padding: 0.5rem;
+        }
+      }
+    </style>
+    <script>
+      const ctaButton = document.querySelector(".cta");
+      const packages = document.querySelector(".packages");
+      const packageLinks = packages.querySelectorAll("a");
+
+      // Add event listeners
+      ctaButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        // Implement logic for CTA button click
+      });
+
+      packageLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          // Implement logic for package link click
+        });
+      });
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Billing System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Payment Methods</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Welcome to our Billing System</h1>
+        <p>Efficient, Reliable and Fast</p>
+        <a href="{% url 'register' %}" class="cta">Get Started</a>
+      </section>
+
+      <section class="packages">
+        <h2>Our Packages</h2>
+        <ul>
+          <li>
+            <h3>Basic Package</h3>
+            <p>Includes basic features</p>
+            <a href="#">Learn More</a>
+          </li>
+          <li>
+            <h3>Advanced Package</h3>
+            <p>Includes advanced features</p>
+            <a href="#">Learn More</a>
+          </li>
+          <li>
+            <h3>Premium Package</h3>
+            <p>Includes premium features</p>
+            <a href="#">Learn More</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Billing System. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
